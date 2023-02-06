@@ -1,4 +1,4 @@
-# Explicación de los Scripts 01, 02, 03, 04, 05 & 06.
+# Explicación de los Scripts 01, 02, 03, 04, 05, 06 & 07.
 
 *   **[Script 01](#script-01)**
     *   **[Explicación 01](#explicación-01)**
@@ -36,8 +36,12 @@
     *   **[Explicación 23](#explicación-23)**
     *   **[Explicación 24](#explicación-24)**
 
-
-
+*   **[Script 07](#script-07)**
+    *   **[Explicación 25](#explicación-25)**
+    *   **[Explicación 26](#explicación-26)**
+    *   **[Explicación 27](#explicación-27)**
+    *   **[Explicación 28](#explicación-28)**
+    *   **[Explicación 29](#explicación-29)**
 
 # Script 01
 
@@ -193,3 +197,47 @@ La expresión `[ ! -f "$1/$2" ]` significa que se está verificando si el archiv
 verifica si la respuesta del usuario a la pregunta anterior fue `s` (afirmativo). Si es así, se verifica si el archivo `$2` es un directorio con el comando `[ ! -d "$1/$2" ]`. Si no es un directorio (es un archivo regular), se muestra su contenido en la consola con el comando cat `$1/$2`.
 
 Si el archivo es un directorio, se muestra un mensaje de error en rojo indicando que `$2` es un directorio y no un archivo, y se termina el script con el comando exit. La expresión `[ ! -d "$1/$2" ]` significa `no es un directorio`.
+
+# Script 07
+
+### Explicación 25
+
+El comando `exec &> >(tee -a /path/to/logfile_backup.log)` se utiliza en el shell de Unix/Linux para redirigir la salida estándar `(stdout)` y la salida de error `(stderr)` a un archivo de registro y, al mismo tiempo, mostrarla en la terminal.
+
+### Explicación 26
+
+`cat /etc/passwd`: Este comando muestra el contenido del archivo de sistema `/etc/passwd`, que es una lista de usuarios en el sistema.
+
+`awk -F: '($3 > 999) {print $1}`: Este comando utiliza awk para procesar el contenido de `/etc/passwd`. awk es un lenguaje de programación que permite manipular texto. La opción `-F`: establece el separador de campo como un dos puntos `(:)`. La expresión `($3 > 999)` dentro de `awk` selecciona solo las líneas en las que el tercer campo (que representa el `ID` de usuario (`UID`) de un usuario) es mayor a `999`. Por último, la acción `{print $1}` imprime el primer campo (que representa el nombre de usuario) de cada línea seleccionada.
+
+`grep -v ^root$`: Este comando utiliza grep para filtrar la salida de awk. La opción `-v` hace que grep muestre solo las líneas que no coinciden con la expresión regular dada (en este caso, `^root$`). La expresión regular `^root$` coincide con una línea que contenga únicamente la cadena `root`.
+
+`while read user; do usermod -L $user; done`: Este es un bucle while que lee la salida filtrada de grep línea por línea. La acción dentro del bucle ejecuta usermod `-L $user` para cada línea, lo que cambia la contraseña de un usuario a `bloqueada` (el modificador `-L` indica que la cuenta está bloqueada).
+
+### Explicación 27
+
+`runlevel=$(runlevel | awk '{print $2}')`: Este comando ejecuta el comando runlevel y utiliza awk para extraer el segundo campo de su salida. Este campo representa el `runlevel` actual del sistema y se asigna a la variable runlevel.
+
+`if [ $runlevel != "1" ]; then init 1; fi`: Este es un bloque `if` que verifica si el valor de la variable runlevel es diferente a `1`. Si es así, ejecuta el comando init `1` para cambiar el `runlevel` a `1`.
+
+### Explicación 28
+
+`fecha=$(date +%Y%m%d_%H%M%S)`: Este comando asigna la fecha y hora actual en formato `YYYYMMDD_HHMMSS` a la variable fecha.
+
+`backup_dir="/backup`: Este comando asigna el valor `/backup` a la variable `backup_dir`, que representa la ruta del directorio de copias de seguridad.
+
+`mkdir -p $backup_dir`: Este comando crea el directorio de copias de seguridad especificado en `backup_dir`, incluyendo cualquier directorio intermedio que no exista (la opción `-p` indica a `mkdir` que cree los directorios intermedios si no existen).
+
+`cat /etc/passwd | awk -F: '($3 > 999) {print $1}' | while read user; do`: Este comando busca en el archivo de sistema `/etc/passwd` y selecciona los nombres de usuario con un UID mayor a 999, similar a lo que se describió en la respuesta anterior.
+
+### Explicación 29
+
+`cat /etc/passwd` muestra el contenido del archivo `/etc/passwd`, que es un archivo de sistema en Unix que contiene información sobre los usuarios del sistema.
+
+`awk -F: '($3 > 999) {print $1}'` utiliza el comando `awk` para procesar el contenido del archivo `/etc/passwd`. La opción `-F:` establece el delimitador de campo como `:`. La expresión regular dentro de las llaves `($3 > 999) {print $1}`indica que se deben imprimir los nombres de usuario `(primer campo $1)` para los cuales el tercer campo `($3)` sea mayor a `999`.
+
+`grep -v "^root$"` utiliza el comando `grep` para filtrar la salida anterior. La opción `-v` invertirá la búsqueda, es decir, se mostrarán todas las líneas que no coincidan con `^root$`.
+
+`while read user` inicia un bucle `while` que lee cada línea de la salida anterior y asigna el valor a la variable `user`.
+
+`usermod -U $user` utiliza el comando `usermod` para desbloquear `(opción "-U")` el usuario especificado en la variable `$user`.
