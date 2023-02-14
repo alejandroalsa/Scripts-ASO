@@ -1,4 +1,4 @@
-# Explicación de los Scripts 01, 02, 03, 04, 05, 06 & 07.
+# Explicación de los Scripts 01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12, 13, 14, 15, 16 & 17.
 
 *   **[Script 01](#script-01)**
     *   **[Explicación 01](#explicación-01)**
@@ -42,6 +42,54 @@
     *   **[Explicación 27](#explicación-27)**
     *   **[Explicación 28](#explicación-28)**
     *   **[Explicación 29](#explicación-29)**
+
+*   **[Script 08](#script-08)**
+    *   **[Explicación 30](#explicación-30)**
+    *   **[Explicación 31](#explicación-31)**
+
+*   **[Script 09](#script-09)**
+    *   **[Explicación 32](#explicación-32)**
+    *   **[Explicación 33](#explicación-33)**
+    *   **[Explicación 34](#explicación-34)**
+
+*   **[Script 10](#script-10)**
+    *   **[Explicación 35](#explicación-35)**
+    *   **[Explicación 36](#explicación-36)**
+    *   **[Explicación 37](#explicación-37)**
+
+*   **[Script 11](#script-11)**
+    *   **[Explicación 38](#explicación-38)**
+    *   **[Explicación 39](#explicación-39)**
+
+*   **[Script 12](#script-12)**
+    *   **[Explicación 40](#explicación-40)**
+    *   **[Explicación 41](#explicación-41)**
+    *   **[Explicación 42](#explicación-42)**
+    *   **[Explicación 43](#explicación-43)**
+
+*   **[Script 13](#script-13)**
+    *   **[Explicación 44](#explicación-44)**
+    *   **[Explicación 45](#explicación-45)**
+    *   **[Explicación 46](#explicación-46)**
+
+*   **[Script 14](#script-14)**
+    *   **[Explicación 47](#explicación-47)**
+
+*   **[Script 15](#script-15)**
+    *   **[Explicación 48](#explicación-48)**
+    *   **[Explicación 49](#explicación-49)**
+    *   **[Explicación 50](#explicación-50)**
+
+*   **[Script 16](#script-16)**
+    *   **[Explicación 51](#explicación-51)**
+    *   **[Explicación 52](#explicación-52)**
+    *   **[Explicación 53](#explicación-53)**
+    *   **[Explicación 54](#explicación-54)**
+    *   **[Explicación 55](#explicación-55)**
+
+
+*   **[Script 17](#script-17)**
+    *   **[Explicación 56](#explicación-56)**
 
 # Script 01
 
@@ -241,3 +289,137 @@ El comando `exec &> >(tee -a /path/to/logfile_backup.log)` se utiliza en el shel
 `while read user` inicia un bucle `while` que lee cada línea de la salida anterior y asigna el valor a la variable `user`.
 
 `usermod -U $user` utiliza el comando `usermod` para desbloquear `(opción "-U")` el usuario especificado en la variable `$user`.
+
+# Script 08
+
+### Explicación 30
+
+El programa usa un bucle `while` que se repite hasta que se ingrese `99` como valor de `x`. Dentro del bucle, se le pide al usuario que infrese el valor de `x` y `y` usando el comando `read`. Luego, se usa un bucle `for` para contar desde `x` hasta `y` e imprimir el valor actual dividido por `y`. La opción `-n` de `echo` se utiliza para imprimir si una nueva linea, lo que permite que los valores se impriman en la misma línea. Finalmente, se usa el comando `echo` para imprimir una nueva línea después de cada secuencia de valores. Si se ingresa `99` como valor de `x`, el programa sele con el comando `exit`.
+
+### Explicación 31
+
+El fragmento de código `for ((i=X; i<=Y; i++)); do` es un bucle `for` en `Bash` que permite iterar una variable `i` desde el valor de `X` hasta el valor de `Y`, incrementando su valor en 1 en cada iteración.
+
+Los componentes del bucle son los siguientes:
+
+*   **((...))** Encierra la expresión aritmética que se evalúa en cada iteración. En este caso, se usa para definir el valor inicial de la variable `i` (que es `X`), la condición de finalización del bucle (que es `i<=Y`), y el incremento que se aplica a la variable `i` en cada iteración (que es `i++`).
+*   **do** Marca el inicio del bloque de código que se ejecuta en cada iteración.
+*   **...** Contiene el código que se ejecuta en cada iteración del bucle. En este caso, se usa el comando echo para imprimir el valor actual de la variable `i` dividido por `Y`.
+*   **done** Marca el final del bloque de código que se ejecuta en cada iteración.
+
+# Script 09
+
+### Explicación 32
+
+La línea `if [ $# -ne 1 ]; then` comprueba el número de argumentos recibidos. Si es distinto de `1`, muestra un mensaje de error y una breve descripción de cómo usar el script.
+
+### Explicación 33
+
+La línea `if [ ! -f "$archivo" ]; then` comprueba si el archivo especificado en `$archivo` existe. Si no existe, muestra un mensaje de error y sale del script.
+
+### Explicación 34
+
+Las líneas siguientes muestran el número de líneas, palabras y caracteres en el archivo, respectivamente. El comando `wc` se utiliza para contar las líneas, palabras y caracteres en el archivo. El operador `<` se utiliza para redirigir la entrada del comando `wc` desde el archivo especificado por `$archivo`.
+
+# Script 10
+
+### Explicación 35
+
+La línea `if [ $# -ne 3 ]; then` comprueba el número de argumentos recibidos. Si es distinto de `3`, muestra un mensaje de error y una breve descripción de cómo usar el script.
+
+### Explicación 36
+
+Las líneas siguientes comprueban que los archivos `$archivo1` y `$archivo2` existen. Si alguno de los archivos no existe, muestra un mensaje de error y sale del script.
+
+### Explicación 37
+
+La línea `diff -u "$archivo1" "$archivo2" > "$archivo_salida"` compara los dos archivos y guarda las diferencias en formato unificado en el archivo especificado en `$archivo_salida`. El operador `>` redirige la salida del comando diff al archivo de salida.
+
+
+# Script 11
+
+### Explicación 38
+
+La línea `if [ $# -ne 1 ]; then` comprueba el número de argumentos recibidos. Si es distinto de `1`, muestra un mensaje de error y una breve descripción de cómo usar el script.
+
+### Explicación 39
+
+El comando `awk` procesa la salida de `ls` y convierte los espacios en dos puntos como separador de campo. La opción `-v FS=""` especifica que el separador de campo es una cadena vacía, lo que hace que `awk` procese cada carácter como un campo separado. La opción `-v OFS=":"` especifica que el separador de campo de salida es un dos puntos. La expresión `{$1=$1; print}` es una forma de forzar que `awk` procese cada línea y produzca una salida con los nuevos separadores de campo.
+
+# Script 12
+
+### Explicación 40
+
+La línea `if [ $# -ne 1 ]; then` comprueba el número de argumentos recibidos. Si es distinto de `1`, muestra un mensaje de error y una breve descripción de cómo usar el script.
+
+### Explicación 41
+
+El comando `if [ ! -d "$directorio" ]; then` comprueba si el directorio especificado existe. Si no existe, muestra un mensaje de error y sale del script con un código de salida distinto de cero.
+
+### Explicación 42
+
+La función `obtener_archivo()` toma un argumento que es la posición del archivo en el array. La función comprueba si hay un archivo en la posición dada y, si lo hay, muestra su nombre y el número de caracteres que contiene utilizando el comando `wc`.
+
+### Explicación 43
+
+El bucle `while true; do` pide al usuario que seleccione un archivo hasta que introduzca el valor `0`. Dentro del bucle, la línea `read -p "Introduce un número entre 1 y ${#archivos[@]} (0 para salir): "` seleccion muestra un mensaje al usuario y espera una entrada de teclado.
+
+# Script 13
+
+### Explicación 44
+
+Este es el inicio de un bucle `while`. La condición de este bucle es simplemente `true`, lo que significa que se ejecutará indefinidamente hasta que se encuentre una instrucción de break.
+
+### Explicación 45
+
+Esta parte verifica si el carácter leído es la tecla `Intro`. Si es así, la instrucción `break` se ejecuta y el bucle se detiene.
+
+### Explicación 46
+
+Esta es la parte principal del script, donde se determina si el carácter leído es un número o una letra. La construcción `[[ ... ]]` es una forma de evaluación de expresiones condicionales en bash, similar a los paréntesis de los if en otros lenguajes de programación. La expresión `$char =~ [0-9]` evalúa si el carácter en la variable `$char` es un número. La expresión `$char =~ [a-zA-Z]` evalúa si el carácter es una letra (`mayúscula o minúscula`). Si ninguna de las dos expresiones es verdadera, se asume que el carácter es `0` y se informa al usuario de que no es ni un número ni una letra.
+
+# Script 14
+
+### Explicación 47
+
+En este script, se utiliza el comando date para obtener la hora actual del sistema en formato de 24 horas. Luego, se compara esa hora con las horas del día, tarde y noche para determinar qué mensaje mostrar. El operador `-ge` significa `mayor o igual que`, y el operador `-lt` significa `menor que`. Por lo tanto, la primera condición se cumple si la hora actual es mayor o igual que `6` y menor que `12`, lo que significa que es de día. La segunda condición se cumple si la hora actual es mayor o igual que `12` y menor que `20`, lo que significa que es de tarde. Si ninguna de las condiciones anteriores se cumple, entonces es de noche.
+
+# Script 15
+
+### Explicación 48
+
+Se obtiene el nombre de usuario activo en el sistema mediante el comando `whoami`, y se almacena en la variable `nombre_usuario`.
+
+### Explicación 49
+
+Después, se utiliza el comando grep para buscar en el archivo `/etc/passwd` (donde se almacenan los datos de los usuarios del sistema) la línea correspondiente al usuario activo (`^$nombre_usuario:` indica que se busque una línea que empiece con el nombre de usuario seguido de `:`), y se utiliza el comando cut para extraer la sexta columna, que corresponde al directorio de trabajo del usuario. El resultado se almacena en la variable `directorio_trabajo`.
+
+### Explicación 50
+
+Finalmente, se repite el mismo proceso para obtener la `shell` asociada al usuario, y el resultado se almacena en la variable shell.
+
+# Script 16
+
+### Explicación 51
+
+Verificar si se pasó un archivo como argumento
+
+### Explicación 52
+
+Convertir a minúsculas y escribir en un archivo de salida
+
+### Explicación 53
+
+Convertir a mayúsculas y escribir en un archivo de salida
+
+### Explicación 54
+
+Eliminar todas las ocurrencias de "a" y escribir en un archivo de salida
+
+### Explicación 55
+
+Pasar todas las vocales a mayúsculas y escribir en un archivo de salida
+
+# Script 17
+
+### Explicación 56
