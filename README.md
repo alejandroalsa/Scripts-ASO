@@ -90,6 +90,7 @@
 
 *   **[Script 17](#script-17)**
     *   **[Explicación 56](#explicación-56)**
+    *   **[Explicación 57](#explicación-57)**
 
 # Script 01
 
@@ -402,24 +403,30 @@ Finalmente, se repite el mismo proceso para obtener la `shell` asociada al usuar
 
 ### Explicación 51
 
-Verificar si se pasó un archivo como argumento
+`if [ $# -eq 0 ]; then:` Esta línea comprueba si el número de argumentos proporcionados al script es cero. Si no se proporciona ningún argumento, muestra un mensaje de error y sale del script con un código de salida de `1`.
 
 ### Explicación 52
 
-Convertir a minúsculas y escribir en un archivo de salida
+`tr '[:upper:]' '[:lower:]' < "$input_file" > "$output_file_lower":` Esta línea utiliza el comando tr para convertir el contenido del archivo de entrada en minúsculas y escribir el resultado en un archivo de salida. La opción `-t` indica la tabla de conversión a utilizar, y los argumentos `'[:upper:]'` y `'[:lower:]'` indican que se deben convertir las letras mayúsculas a minúsculas. El símbolo `<` indica que el archivo de entrada debe ser leído como entrada estándar, y el símbolo `>` indica que la salida debe escribirse en un archivo.
 
 ### Explicación 53
 
-Convertir a mayúsculas y escribir en un archivo de salida
+`tr '[:lower:]' '[:upper:]' < "$input_file" > "$output_file_upper":` Esta línea utiliza el comando tr para convertir el contenido del archivo de entrada en mayúsculas y escribir el resultado en un archivo de salida. La opción `-t` indica la tabla de conversión a utilizar, y los argumentos `'[:lower:]'` y `'[:upper:]'` indican que se deben convertir las letras minúsculas a mayúsculas. El símbolo `<` indica que el archivo de entrada debe ser leído como entrada estándar, y el símbolo `>` indica que la salida debe escribirse en un archivo.
 
 ### Explicación 54
 
-Eliminar todas las ocurrencias de "a" y escribir en un archivo de salida
+`sed 's/a//g' < "$input_file" > "$output_file_no_a":` Esta línea utiliza el comando sed para eliminar todas las ocurrencias de la letra `a` en el archivo de entrada `$input_file` y guardar el resultado en el archivo de salida `$output_file_no_a`.
 
 ### Explicación 55
 
-Pasar todas las vocales a mayúsculas y escribir en un archivo de salida
+`sed 's/[aeiou]/\U&/g' < "$input_file" > "$output_file_vowels":` Esta línea utiliza el comando sed para buscar en el archivo de entrada $input_file cualquier ocurrencia de las letras `a`, `e`, `i`, `o` o `u` y reemplazarlas por la misma letra en mayúsculas. Luego, el resultado se guarda en el archivo de salida `$output_file_vowels`.
 
 # Script 17
 
 ### Explicación 56
+
+Esta sección define una función llamada `is_number` que toma un argumento y devuelve `0` si el argumento es un número y `1` si no lo es. La función utiliza la expresión regular para verificar si el argumento es un número. La expresión regular coincide con los números con o sin signo, números decimales y números en notación científica.
+
+### Explicación 57
+
+Esta sección utiliza la función `is_number` para verificar si el valor introducido por el usuario es un número. Si es así, se realiza un cálculo utilizando la fórmula `3*x**2 + 5*x + 8` y se muestra el resultado. De lo contrario, se muestra un mensaje de error pidiendo al usuario que introduzca un valor numérico válido.
