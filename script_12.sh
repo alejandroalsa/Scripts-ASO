@@ -1,10 +1,22 @@
 #!/bin/bash
 clear
 
+
+function ayuda() {
+  echo "Este script muestra los archivos de un directorio y permite seleccionar uno para ver información sobre él."
+  echo ""
+  echo "Uso: $0 <directorio>"
+  echo "  <directorio> : directorio que se quiere analizar"
+  echo ""
+  echo "Ejemplo: $0 /home/user/documentos"
+  exit 1
+}
+
 #---->Explicación 40
 if [ $# -ne 1 ]; then
   echo "Número de argumentos incorrecto"
   echo "Uso: $0 <directorio>"
+  ayuda
   exit 1
 fi
 
@@ -13,6 +25,7 @@ directorio=$1
 #---->Explicación 41
 if [ ! -d "$directorio" ]; then
   echo "El directorio $directorio no existe"
+  ayuda
   exit 1
 fi
 
@@ -41,5 +54,9 @@ while true; do
     obtener_archivo "$((seleccion - 1))"
   else
     echo "Número no válido"
+    ayuda
+    exit 1
   fi
 done
+
+exit 0

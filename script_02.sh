@@ -1,11 +1,27 @@
 #!/bin/bash
 clear
 
+
+function ayuda {
+    echo "Este script procesa un archivo de entrada y crea un archivo de salida"
+    echo "con los nombres, apellidos, DNI y un código generado a partir de estos datos"
+    echo ""
+    echo "Uso:"
+    echo "  $0 archivo_entrada archivo_salida"
+    echo ""
+    echo "Argumentos:"
+    echo "  archivo_entrada: archivo con los datos de entrada (nombre, apellidos y DNI separados por ;)"
+    echo "  archivo_salida: archivo donde se guardarán los datos procesados (nombre, apellidos, DNI y código generado)"
+    echo ""
+    exit 1
+}
+
 #---->Explicación 05
 if [ $# != 2 ]; then
     
     echo "Número de parametros incorrectos"
-    exit
+    ayuda
+    exit 1
 
 else
     echo "Número de Argumentos correctos"
@@ -18,7 +34,8 @@ else
     else
         echo "El archivo de entrada o salida no existe, por favor cre el archivo de entrda, el archivo de salida ya ha sido creado"
         touch $2
-        exit
+        ayuda
+        exit 1
     fi
 
 fi
@@ -39,6 +56,8 @@ while IFS= read -r linea; do
     #---->Explicación 08
     if [[ $comparison == $ex_intro ]]; then
         echo "El usuario $en_row ya existe"
+        ayuda
+        exit 1
     else
         #---->Explicación 09
         if [ $en_row = "NOMBRE;APELLIDOS;DNI" ]; then 
@@ -46,6 +65,7 @@ while IFS= read -r linea; do
         else
             echo "$ex_intro" >> $2
             echo "El usuario ha sido creado"
+            exit 0
         fi
     fi
 done < $1

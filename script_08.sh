@@ -1,5 +1,12 @@
 #!/bin/bash
 clear
+function ayuda() {
+    echo "Este script solicita un valor X e Y para imprimir los números desde X hasta Y."
+    echo "Ejecute el script y siga las instrucciones para ingresar los valores."
+    echo "El valor de X debe ser menor o igual que Y."
+    echo "Ingrese '99' para salir del script."
+    exit 1
+}
 
 #---->Explicación 30
 while true; do

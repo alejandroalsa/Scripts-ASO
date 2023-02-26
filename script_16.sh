@@ -1,9 +1,24 @@
 #!/bin/bash
 clear
 
+function ayuda {
+  echo "Este script procesa un archivo de texto de cuatro maneras diferentes:"
+  echo "1. Convierte todo el contenido del archivo a minúsculas."
+  echo "2. Convierte todo el contenido del archivo a mayúsculas."
+  echo "3. Elimina todas las ocurrencias de la letra 'a' del archivo."
+  echo "4. Convierte todas las vocales del archivo a mayúsculas."
+  echo ""
+  echo "Uso: $0 <archivo>"
+  echo ""
+  echo "Parámetros:"
+  echo "  <archivo>: El archivo de texto a procesar."
+  exit 1
+}
+
 #---->Explicación 51
 if [ $# -eq 0 ]; then
   echo "Error: debe proporcionar un archivo como argumento"
+  ayuda
   exit 1
 fi
 
@@ -28,3 +43,5 @@ echo "El contenido sin 'a' se ha guardado en $output_file_no_a"
 #---->Explicación 55
 sed 's/[aeiou]/\U&/g' < "$input_file" > "$output_file_vowels"
 echo "El contenido con vocales en mayúsculas se ha guardado en $output_file_vowels"
+
+exit 0

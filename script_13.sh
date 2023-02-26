@@ -1,5 +1,11 @@
 #!/bin/bash
 clear
+function ayuda {
+    echo "Este script lee caracteres de la entrada estándar y determina si son letras o números."
+    echo "Uso: $0"
+    echo "Presione Ctrl+C para salir."
+    exit 1
+}
 
 #---->Explicación 44
 while true; do
@@ -19,3 +25,4 @@ while true; do
         echo "0 no es una letra ni un número"
     fi
 done
+exit 0

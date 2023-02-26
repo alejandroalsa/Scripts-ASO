@@ -1,5 +1,24 @@
 #!/bin/bash
 clear
+function ayuda {
+    echo "Este script es un ejemplo de uso de Bash para realizar diferentes tareas."
+    echo "Para utilizarlo, seleccione una opción del menú principal."
+    echo
+    echo "Opciones:"
+    echo "1) Dar permiso de ejecución a todos los archivos de un directorio."
+    echo "2) Quitar permiso de ejecución a todos los archivos de un directorio."
+    echo "3) Hacer copia de seguridad del directorio de trabajo de un usuario."
+    echo "4) Obtener en un archivo los 20 inicios de sesión más recientes."
+    echo "5) Salir."
+    echo
+    echo "Ejemplo de uso:"
+    echo "./nombre_del_script.sh"
+    echo
+    echo "Autor: Tu nombre aquí"
+  exit 1
+}
+
+
 
 OPC="0"
 
@@ -39,6 +58,7 @@ until [ $OPC = "5" ]; do
         echo "Se a creado una copia de seguridad del directorio /home/$NAME_USER/ y se a almacenado en /tmp/copia_seguridad_$NAME_USER-$(date +%Y_%m_%d_%H:%M:%S).zip"
     else 
         echo "Lo siento pero ese usuario no existe"
+        ayuda
         read -n 1 -p "Pulsa una tecla para volver al menu: " PAUSA
     fi
     read -n 1 -p "Pulsa una tecla para volver al menu: " PAUSA;;

@@ -3,10 +3,29 @@ clear
 
 OPC="0"
 
+function ayuda(){
+    clear
+    echo "Este script realiza diversas operaciones del sistema, incluyendo:"
+    echo "- Crear, habilitar, deshabilitar o eliminar un usuario del sistema."
+    echo "- Cambiar permisos a un archivo o directorio."
+    echo "- Realizar una copia de seguridad del directorio de trabajo de un usuario."
+    echo "- Mostrar los usuarios conectados actualmente al sistema."
+    echo "- Mostrar el espacio libre en disco."
+    echo "- Trazar una ruta especificada por el usuario."
+    echo
+    echo "Instrucciones de uso:"
+    echo "1. Ejecute el script desde una terminal."
+    echo "2. Seleccione una de las opciones del menú y siga las instrucciones."
+    echo
+    echo "Ejemplo de uso: ./script.sh"
+    read -n 1 -p "Pulsa una tecla para volver al menu: " PAUSA
+}
+
 #---->Explicación 01
-until [ $OPC = "10" ]; do 
+until [ $OPC = "10" ]; do
     clear
     echo "Menu"
+    echo "a) Ayuda."
     echo "1) Crear usuario."
     echo "2) Habilitar usuario."
     echo "3) Deshabilitar usuario."
@@ -22,6 +41,7 @@ until [ $OPC = "10" ]; do
     echo
  #---->Explicación 02
  case $OPC in 
+    a) ayuda;;
     1) echo "Crear usuario"
     read -p "Nombre de usuario: " NAME_USER
     read -p "Contraseña: " PASS_USER
@@ -97,7 +117,13 @@ until [ $OPC = "10" ]; do
 
     9) echo "Trazar ruta."
     read -p "Direccion IP o dominio para treazar la ruta: " IP_DOMAIN
-    traceroute $IP_DOMAIN
+
+    # Ejecutar el comando traceroute y verificar si se ejecutó correctamente
+    if traceroute $IP_DOMAIN; then
+        read -n 1 -p "Pulsa una tecla para volver al menu: " PAUSA
+    else
+        echo "Error: no se pudo ejecutar el comando traceroute."
+    fi
     read -n 1 -p "Pulsa una tecla para volver al menu: " PAUSA;;
 
     10) echo "Adios.";;

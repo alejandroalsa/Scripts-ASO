@@ -1,6 +1,16 @@
 #!/bin/bash
 clear
 
+function ayuda() {
+  echo "Este script realiza las siguientes tareas:"
+  echo "1. Registra la salida estándar en un archivo de registro ubicado en /path/to/logfile_backup.log"
+  echo "2. Bloquea las cuentas de usuario cuyo UID sea mayor que 999, excepto la cuenta de root"
+  echo "3. Cambia el nivel de ejecución del sistema a 1 si no se encuentra en el nivel 1"
+  echo "4. Realiza una copia de seguridad de los directorios de inicio de los usuarios cuyo UID sea mayor que 999 en /backup en formato zip"
+  echo "5. Desbloquea las cuentas de usuario cuyo UID sea mayor que 999, excepto la cuenta de root"
+  echo "6. Reinicia el sistema"
+  exit 1
+}
 #---->Explicación 25
 exec &> >(tee -a /path/to/logfile_backup.log)
 
