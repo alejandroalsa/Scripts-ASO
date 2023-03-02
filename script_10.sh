@@ -15,6 +15,7 @@ function ayuda() {
 }
 
 #---->Explicación 35
+# La línea if [ $# -ne 3 ]; then comprueba el número de argumentos recibidos. Si es distinto de 3, muestra un mensaje de error y una breve descripción de cómo usar el script.
 if [ $# -ne 3 ]; then
   echo "Número de argumentos incorrecto"
   echo "Uso: $0 <archivo1> <archivo2> <archivo_salida>"
@@ -27,6 +28,7 @@ archivo2=$2
 archivo_salida=$3
 
 #---->Explicación 36
+# Las líneas siguientes comprueban que los archivos $archivo1 y $archivo2 existen. Si alguno de los archivos no existe, muestra un mensaje de error y sale del script.
 if [ ! -f "$archivo1" ]; then
   echo "El archivo $archivo1 no existe"
   ayuda
@@ -40,6 +42,7 @@ if [ ! -f "$archivo2" ]; then
 fi
 
 #---->Explicación 37
+# La línea diff -u "$archivo1" "$archivo2" > "$archivo_salida" compara los dos archivos y guarda las diferencias en formato unificado en el archivo especificado en $archivo_salida. El operador > redirige la salida del comando diff al archivo de salida.
 diff -u "$archivo1" "$archivo2" > "$archivo_salida"
 
 cat "$archivo_salida"

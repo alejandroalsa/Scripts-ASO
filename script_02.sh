@@ -17,6 +17,7 @@ function ayuda {
 }
 
 #---->Explicación 05
+# Una simple comprobación de argumentos
 if [ $# != 2 ]; then
     
     echo "Número de parametros incorrectos"
@@ -27,6 +28,7 @@ else
     echo "Número de Argumentos correctos"
     
     #---->Explicación 06
+# Comprobación de archivos donde le pasamos los dos argumentos y comprueba si existen.
     if [ -e $1 ] && [ -e $2 ]; then
         echo "Existe"
         echo "Creado el archivo"
@@ -41,6 +43,7 @@ else
 fi
 
 #---->Explicación 07
+# Esta parte del código está tomando una línea de un archivo (llamado linea) y utilizando comandos de Linux como cut y tr para manipular y extraer información de esa línea. Luego, está combinando esa información extraída para crear una nueva cadena de texto (llamada en_row). También está creando una variable people que combina el nombre y el apellido de la persona de la línea original. Además, está creando una variable ex_intro que combina people, un punto y coma, y en_row. Finalmente, está buscando en otro archivo (llamado $2) si hay una coincidencia con la variable ex_intro usando el comando grep.
 while IFS= read -r linea; do
 
     en_name=$(echo "$linea" | cut -c 1 | tr [[:upper:]] [[:lower:]])
@@ -54,12 +57,14 @@ while IFS= read -r linea; do
     ex_intro=$(echo "$people$ex_semicolon$en_row")
     comparison=$(cat $2 | grep "$ex_intro")
     #---->Explicación 08
+# Al extraer los datos de las líneas de la variable comparison los evaluamos en un if donde se le aplica la lógica de que si son iguales dará el error de: El usuario $en_row ya existe, si no saltara a la siguiente línea.
     if [[ $comparison == $ex_intro ]]; then
         echo "El usuario $en_row ya existe"
         ayuda
         exit 1
     else
         #---->Explicación 09
+# Ejecutamos otra instrucción de comparación indicándole que si hay una línea con el texto NOMBRE;APELLIDOS;DNI lo deje vacío y si no que introduzca los datos en la línea siguiente del archivo introducido como segundo argumento.
         if [ $en_row = "NOMBRE;APELLIDOS;DNI" ]; then 
             echo ""
         else

@@ -11,6 +11,7 @@ function ayuda {
 }
 
 #---->Explicación 32
+# La línea if [ $# -ne 1 ]; then comprueba el número de argumentos recibidos. Si es distinto de 1, muestra un mensaje de error y una breve descripción de cómo usar el script.
 if [ $# -ne 1 ]; then
   echo "Número de argumentos incorrecto"
   echo "Uso: $0 <archivo>"
@@ -21,6 +22,7 @@ fi
 archivo=$1
 
 #---->Explicación 33
+# La línea if [ ! -f "$archivo" ]; then comprueba si el archivo especificado en $archivo existe. Si no existe, muestra un mensaje de error y sale del script.
 if [ ! -f "$archivo" ]; then
   echo "El archivo $archivo no existe"
   ayuda
@@ -28,6 +30,7 @@ if [ ! -f "$archivo" ]; then
 fi
 
 #---->Explicación 34
+# Las líneas siguientes muestran el número de líneas, palabras y caracteres en el archivo, respectivamente. El comando wc se utiliza para contar las líneas, palabras y caracteres en el archivo. El operador < se utiliza para redirigir la entrada del comando wc desde el archivo especificado por $archivo.
 nl "$archivo"
 echo ""
 echo "Número de líneas: $(wc -l < "$archivo")"
