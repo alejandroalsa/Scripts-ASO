@@ -39,13 +39,15 @@ function es_primo {
   if [ $1 -lt 2 ]; then
     return 1
   fi
-  for (( i=2; i<$1; i++ )); do
+  for (( i=2; i<=$1/2; i++ )); do # comprobamos hasta la mitad del número
     if [ $(($1%i)) -eq 0 ]; then
       return 1
     fi
   done
   return 0
 }
+
+
 
 # Recorremos los números entre num1 y num2 y verificamos si son primos
 for (( i=$num1; i<=$num2; i++ )); do

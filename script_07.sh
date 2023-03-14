@@ -38,7 +38,7 @@ cat /etc/passwd | awk -F: '($3 > 999) {print $1}' | while read user; do
   home_dir=$(eval echo ~$user)
   if [ -d "$home_dir" ]; then
     zip_file="$backup_dir/bk_$user_$fecha.zip"
-    zip -r $zip_file $home_dir
+    tar -r $zip_file $home_dir
   fi
 done
 
