@@ -53,7 +53,7 @@ fi
 # Verifica si el tercer argumento ($3) pasado al script es un símbolo de operación (+, -, *, /) o no.
 
 # El comando if [ $3 = "+" ] || [ $3 = "-" ] || [ $3 = "*" ] || [ $3 = "/" ]; then comprueba si el tercer argumento es igual a +, -, * o /, utilizando cuatro condicionales OR (||) para comprobar cada posible valor.
-if [ $3 = "+" ] || [ $3 = "-" ] || [ $3 = "*" ] || [ $3 = "/" ]; then
+if [[ $3 == "+" ]] || [[ $3 == "-" ]] || [[ $3 == "*" ]] || [[ $3 == "/" ]]; then
   echo -e "El tercer argumento \033[1;97m$3\033[0m es \033[1;92mcorrecto\033[0m"
 else
   echo -e "\033[1;91mEl tercer argumento\033[0m \033[1;97m$3 \033[1;91mno es un símbolo de operación (+, -, *, /)\033[0m"
